@@ -2,7 +2,11 @@ require 'sinatra/base'
 
 class BookmarkManager < Sinatra::Base
   get '/' do
-    'BookmarkManager'
+    'Bookmark'
+  end
+
+  get '/bookmarks' do
+    erb :index  
   end
 
   run! if app_file == $0
