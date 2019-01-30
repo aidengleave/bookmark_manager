@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'sinatra/base'
+require './lib/bookmark'
 
 class BookmarkManager < Sinatra::Base
   get '/' do
@@ -8,6 +9,7 @@ class BookmarkManager < Sinatra::Base
   end
 
   get '/bookmarks' do
+    @bookmarks = Bookmark.list_all
     erb :index
   end
 
