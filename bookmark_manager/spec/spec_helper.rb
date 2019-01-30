@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require_relative './setup_test_database'
+
 require 'capybara'
 require 'capybara/rspec'
 require 'rack/test'
@@ -9,13 +11,19 @@ require 'simplecov-console'
 require 'rubocop'
 
 SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter.new([
-                                                                 SimpleCov::Formatter::Console,
-                                                                 # Want a nice code coverage website? Uncomment this next line!
-                                                                 # SimpleCov::Formatter::HTMLFormatter
-                                                               ])
+SimpleCov::Formatter::Console,
+# Want a nice code coverage website? Uncomment this next line!
+# SimpleCov::Formatter::HTMLFormatter
+])
 SimpleCov.start
 
-ENV['RACK_ENV'] = 'test'
+ENV['ENVIRONMENT'] = 'test'
+
+RSpec.configure do |config|
+  config.before(:each) do
+    setup_test_database
+  end
+end
 
 require File.expand_path '../app/app.rb', __dir__
 

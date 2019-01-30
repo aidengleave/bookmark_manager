@@ -13,5 +13,5 @@ class BookmarkManager < Sinatra::Base
     erb :index
   end
 
-  run! if app_file == $PROGRAM_NAME
+  run! if app_file == $0
 end
