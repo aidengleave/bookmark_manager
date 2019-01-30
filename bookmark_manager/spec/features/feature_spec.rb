@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 feature 'You should see BookmarkManager on the homepage' do
   scenario 'BookmarkManager to be diplayed on the homepage' do
     visit('/')
@@ -5,6 +7,6 @@ feature 'You should see BookmarkManager on the homepage' do
   end
   scenario '/bookmarks exists and has bookmarks' do
     visit('/bookmarks')
-    expect(page).to have_content("foo.com\nbar.net\nmoo.org") 
+    expect(page).to have_content("foo.com\nbar.net\nmoo.org")
   end
 end
