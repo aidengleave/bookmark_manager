@@ -19,12 +19,14 @@ feature 'You should see BookmarkManager on the homepage' do
   #   expect(page).to have_content 'http://www.google.com'
   # end
 
-  # scenario 'adding a new bookmark to the table' do
-  #   visit '/bookmarks/new'
-  #   fill_in('url', with: 'http://www.foo.com')
-  #   click_button("Submit")
-  #   expect(page).to have_content('http://www.foo.com')
-  # end
+  scenario 'adding a new bookmark to the table' do
+    visit '/bookmarks/new'
+    fill_in('title', with: 'Foo')
+    fill_in('url', with: 'http://www.foo.com')
+    click_button("Submit")
+    expect(page).to have_content('Foo')
+    # expect(page).to have_content('http://www.foo.com')
+  end
 
   scenario 'adding title column to table' do
     connection = PG.connect(dbname: 'bookmark_manager_test')
