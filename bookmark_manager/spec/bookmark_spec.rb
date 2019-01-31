@@ -10,16 +10,19 @@ describe '.list_all' do
 
     bookmarks = Bookmark.list_all
 
-    expect(bookmarks).to include 'Makers'
-    expect(bookmarks).to include 'Destroy All Software'
-    expect(bookmarks).to include 'Google'
+    expect(bookmarks[0].title).to include 'Makers'
+    expect(bookmarks[1].title).to include 'Destroy All Software'
+    expect(bookmarks[2].title).to include 'Google'
   end
 end
 
 describe '.create' do
   it 'creates a new bookmark' do
     Bookmark.create('Github', 'http://github.com')
+
+    bookmarks = Bookmark.list_all
     
-    expect(Bookmark.list_all).to include 'Github'
+    expect(bookmarks[0].title).to include 'Github'
+    expect(bookmarks[0].url).to include 'http://github.com'
   end
 end

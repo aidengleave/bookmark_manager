@@ -4,7 +4,9 @@ require 'pg'
 
 class Bookmark
 
-  def initialize(id, title, url)
+  attr_reader :id, :title, :url
+
+  def initialize(id:, title:, url:)
     @id = id
     @title = title
     @url = url
@@ -18,7 +20,7 @@ class Bookmark
     end
 
     result = connection.exec('SELECT * FROM bookmarks;')
-    result.map { |bookmark| bookmark['title']}
+    result.map { |bookmark| Bookmark.new(id: bookmark['id'], title: bookmark['title'], url: bookmark['url']) }
   end
 
   def self.create(title, url)
@@ -31,5 +33,6 @@ class Bookmark
     connection.exec("INSERT INTO bookmarks (title, url) VALUES('#{title}', '#{url}')")
 
   end
+  
 end
 
