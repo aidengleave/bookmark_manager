@@ -31,9 +31,9 @@ feature 'You should see BookmarkManager on the homepage' do
   scenario 'adding title column to table' do
     connection = PG.connect(dbname: 'bookmark_manager_test')
 
-    Bookmark.create(title: 'Makers', url: 'http://www.makersacademy.com')
-    Bookmark.create(title: 'Destroy All Software', url: 'http://www.destroyallsoftware.com')
-    Bookmark.create(title: 'Google', url: 'http://www.google.com')
+    Bookmark.create('Makers', 'http://www.makersacademy.com')
+    Bookmark.create('Destroy All Software', 'http://www.destroyallsoftware.com')
+    Bookmark.create('Google', 'http://www.google.com')
     visit('/bookmarks')
 
     expect(page).to have_content 'Makers'

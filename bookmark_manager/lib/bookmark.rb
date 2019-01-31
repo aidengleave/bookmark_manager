@@ -3,6 +3,13 @@
 require 'pg'
 
 class Bookmark
+
+  def initialize(id, title, url)
+    @id = id
+    @title = title
+    @url = url
+  end
+
   def self.list_all
     if ENV['ENVIRONMENT'] == 'test'
       connection = PG.connect(dbname: 'bookmark_manager_test')
@@ -14,7 +21,7 @@ class Bookmark
     result.map { |bookmark| bookmark['title']}
   end
 
-  def self.create(title:, url:)
+  def self.create(title, url)
     if ENV['ENVIRONMENT'] == 'test'
       connection = PG.connect(dbname: 'bookmark_manager_test')
     else
